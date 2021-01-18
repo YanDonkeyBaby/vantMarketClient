@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/category/index",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -9,5 +10,8 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib":{
+    "weui":true
+  }
 }

@@ -1,5 +1,11 @@
 // app.js
+import wxp from './lib/wxp'
+import Event from './lib/event'
 App({
+  wxp: (wx.wxp = wxp),
+  globalData: (wx.globalData = {}),
+  globalEvent: (wx.globalEvent = new Event()),
+
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -34,6 +40,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    api_url:'http://localhost:3000'
   }
 })

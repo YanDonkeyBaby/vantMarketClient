@@ -4,9 +4,9 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -42,7 +42,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.14.4",
   "appid": "wxe3aabb71f2035af0",
-  "projectname": "miniprogram-1",
+  "projectname": "vantMarketClient",
   "debugOptions": {
     "hidedInDevtools": []
   },
