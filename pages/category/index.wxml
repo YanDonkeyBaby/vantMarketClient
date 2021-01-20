@@ -7,7 +7,7 @@
       <view class="vtabs-content-item">
         <view style="line-height:50px;background-color:rgba(255,255,255,1);text-align:center;">{{item.title}}</view>
         <view wx:for="{{goodsListMap[item.id]}}" wx:for-index="index2" wx:for-item="item2" wx:key="id">
-          <van-card price="{{item2.start_price}}" desc="" title="{{item2.goods_name}}"
+          <van-card bindtap="onTapGoods" data-id="{{item2.id}}" price="{{item2.start_price}}" desc="" title="{{item2.goods_name}}"
             thumb="{{item2.goods_infos[0].content}}">
             <view slot="footer">
               <van-icon size="24px" name="shopping-cart-o" />

@@ -1,17 +1,18 @@
 {
-  "pages":[
+  "pages": [
     "pages/category/index",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/goods/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "useExtendedLib":{
-    "weui":true
+  "useExtendedLib": {
+    "weui": true
   }
 }

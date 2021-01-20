@@ -83,6 +83,27 @@ Page({
       this.getGoodsListByCategory(categoryId,index)
     }
   },
+  async onTapGoods(e){
+    wx.showLoading({
+      title: 'loading...',
+    })
+    let goodsId = e.currentTarget.dataset.id
+    let goods = await wx.wxp.request({
+      url: getApp().globalData.api_url+ `/goods/goods/${goodsId}`
+    })
+    if(goods){
+      goods = goods.data.data
+      wx.navigateTo({
+        url: `/pages/goods/index?goodsId=${goodsId}`,
+        success: function(res){
+          res.eventChannel.emit('goodsData',{data:goods})
+        }
+      })
+    }
+    
+    wx.hideLoading()
+  },
+
   onTabCLick(e) {
     const index = e.detail.index
     console.log('tabClick', index)

@@ -160,7 +160,6 @@ Component({
                 _heightRecords[i] = temp + (_contentHeight[i] || 0);
                 temp = _heightRecords[i];
             }
-            console.log(_heightRecords)
             this.data._heightRecords = _heightRecords;
         },
         scrollTabBar: function scrollTabBar(index) {
