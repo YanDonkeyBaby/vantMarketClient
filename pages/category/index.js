@@ -9,7 +9,7 @@ Page({
 
   async onLoad() {
     let categories = await wx.wxp.request({
-      url: getApp().globalData.api_url+'/goods/categories',
+      url: `${getApp().wxp.URL_BASE}/goods/categories`,
     })
     if(categories){
       categories = categories.data.data
@@ -58,7 +58,7 @@ Page({
       }
     }
     let goodsList = await wx.wxp.request({
-      url: getApp().globalData.api_url+`/goods/goods?page_size=${pageSize}0&page_index=${pageIndex}&category_id=${categoryId}`,
+      url: `${getApp().wxp.URL_BASE}/goods/goods?page_size=${pageSize}0&page_index=${pageIndex}&category_id=${categoryId}`,
     })
     if(goodsList) goodsList = goodsList.data.data.rows
     if(listMap){
@@ -89,7 +89,7 @@ Page({
     })
     let goodsId = e.currentTarget.dataset.id
     let goods = await wx.wxp.request({
-      url: getApp().globalData.api_url+ `/goods/goods/${goodsId}`
+      url: `${getApp().wxp.URL_BASE}/goods/goods/${goodsId}`
     })
     if(goods){
       goods = goods.data.data

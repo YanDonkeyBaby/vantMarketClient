@@ -40,7 +40,6 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    api_url:'http://localhost:3000'
+    userInfo: null
   }
 })

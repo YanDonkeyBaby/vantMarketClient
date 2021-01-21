@@ -30,7 +30,41 @@ Page({
     })
   },
 
-  addToCart() {
+  // 加入购物车
+  async addToCart(e) {
+    if(!this.data.selectedGoodsSkuObject.sku){
+      wx.showModal({
+        title: '请选择商品规格',
+          showCancel: false
+      })
+      this.showSkuPanelPopup();
+      return
+    }
+
+    let goods_id = this.data.goodsId
+    let goods_sku_id = this.data.selectedGoodsSkuObject.sku.id
+    let goods_sku_desc = this.data.selectedGoodsSkuObject.text
+    const data = {
+      goods_id,
+      goods_sku_id,
+      goods_sku_desc
+    }
+    let res = await wx.wxp.request4({
+      url:  `${getApp().wxp.URL_BASE}/user/my/carts`,
+      method:'post',
+      data
+    })
+    if(res.data.msg == 'ok'){
+      wx.showToast({
+        title: '已添加'
+      })
+    }
+
+  },
+  toCart(e){
+    wx.switchTab({
+      url: '/pages/cart/index',
+    })
 
   },
   /**
@@ -53,7 +87,7 @@ Page({
 
     //获取sku规格数据
     let goodsSkuDataRes = await wx.wxp.request({
-      url: getApp().globalData.api_url + `/goods/goods/${goodsId}/sku`,
+      url: `${getApp().wxp.URL_BASE}/goods/goods/${goodsId}/sku`,
     })
     if (goodsSkuDataRes) {
       let goodsSkuData = goodsSkuDataRes.data.data
