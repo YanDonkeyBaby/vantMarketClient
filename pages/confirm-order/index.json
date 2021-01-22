@@ -9,6 +9,6 @@
     "van-stepper": "@vant/weapp/stepper/index",
     "van-field": "@vant/weapp/field/index",
     "van-submit-bar": "@vant/weapp/submit-bar/index",
-  "xunhupay":"../../components/xunhupay/index"
+    "xunhupay":"../../components//xunhupay"
   }
 }

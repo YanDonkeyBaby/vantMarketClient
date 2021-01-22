@@ -54,9 +54,9 @@ Page({
   },
 
   onChange(e){
-    let selectedAddressId = e.detail
+    // let selectedAddressId = e.detail
     this.setData({
-      selectedAddressId
+      selectedAddressId:e.detail
     })
   },
   async onSlideButtonTap(e){
@@ -97,7 +97,7 @@ Page({
   confirm(){
     let selectedAddressId = this.data.selectedAddressId
     let addressList = this.data.addressList
-    let item = addressList.find(item=>item.id = selectedAddressId)
+    let item = addressList.find(item=>item.id == selectedAddressId)
     let opener = this.getOpenerEventChannel()
     opener.emit('selectAddress',item)
     wx.navigateBack({

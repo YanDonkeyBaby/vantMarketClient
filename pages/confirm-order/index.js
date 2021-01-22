@@ -28,7 +28,27 @@ Page({
       }
     })
   },
-
+  async removeCartsGoods(goodsCartsIds){
+    let data = {
+      ids:goodsCartsIds
+    }
+    let res = await wx.wxp.request4({
+      url: `${getApp.wxp.URL_BASE}/user/my/carts`,
+      method:'delete',
+      data
+    })
+    if(res.data.msg=='ok'){
+      wx.switchTab({
+        url: '/pages/cart/index',
+      })
+    }else{
+      wx.showModal({
+        title: '更新购物车数据失败',
+        showCancel: false
+      })
+    }
+    
+  },
   onSubmit(e) {
     wx.showActionSheet({
       itemList: ['默认支付','小微商户'],
@@ -79,16 +99,53 @@ Page({
       method:'post',
       data
     })
-    let submchPayParams = res.data.data.submchPayParams
+    let submchPayParams = res.data.data.params
     console.log("submchPayParams",submchPayParams);
     this.setData({
       prepareSubmchPay:true,
       submchPayParams
     })
   },
-  bindPaySuccess(){},
-  bindPayFail(){},
-  bindPayComplete(){},
+  async bindPaySuccess(res){
+    console.log('success', res)
+    this.setData({
+      submchPayorderResult: res.detail.info
+    })
+    await wx.wxp.showModal({
+      title: '支付成功',
+      content: '支付单号：' + res.detail.info.orderId,
+      showCancel: false
+    })
+    let carts = this.data.carts
+    let goodsCartsIds = carts.map(item => item.id)
+    this.removeCartsGoods(goodsCartsIds)
+  },
+  bindPayFail(){
+    console.log('fail', res)
+    this.setData({
+      submchPayorderResult: res.detail.info
+    })
+    if (res.detail.error) {
+      console.error('发起支付失败', res.detail.info)
+      wx.showModal({
+        title: '支付失败，请重试',
+        content: '支付单号：' + res.detail.info.orderId,
+        showCancel: false
+      })
+    } else if (res.detail.navigateSuccess) {
+      console.log('[取消支付] 支付单号：', res.detail.info.orderId)
+      wx.showModal({
+        title: '支付取消了，why?',
+        content: '支付单号：' + res.detail.info.orderId,
+        showCancel: false
+      })
+    }
+  },
+  bindPayComplete(){
+    this.setData({
+      prepareSubmchPay:false
+    })
+  },
   // 重新计算总价
   calcTotalPrice() {
     let totalPrice = 0
