@@ -114,7 +114,7 @@ Page({
       })
     }
     wx.navigateTo({
-      url: '/page/confirm-order/index',
+      url: '/pages/confirm-order/index',
       success:function(res){
         res.eventChannel.emit('cartData',{data:cartData})
       }

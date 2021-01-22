@@ -5,7 +5,10 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/goods/index",
-    "components/login/index"
+    "components/login/index",
+    "pages/confirm-order/index",
+    "pages/address-list/index",
+    "pages/new-address/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

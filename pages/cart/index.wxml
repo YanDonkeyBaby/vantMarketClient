@@ -22,7 +22,7 @@
 </van-checkbox-group>
 </block>
 
-<van-submit-bar wx:if="{{!editMode}}" price="{{ totalPrice }}" button-text="提交订单" :submit="onCartConfirm">
+<van-submit-bar wx:if="{{!editMode}}" price="{{ totalPrice }}" button-text="提交订单" bind:submit="onCartConfirm">
   <van-checkbox value="{{ allIsSelected }}" bind:change="onSelectAll" shape="square">全选</van-checkbox>
   <template tip>
     你的收货地址不支持同城送, <span :click="onClickEditAddress">修改地址</span>
